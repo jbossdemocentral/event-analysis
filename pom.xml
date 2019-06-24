@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.redhat.depositretention</groupId>
@@ -26,7 +26,7 @@
 		<java.version>1.8</java.version>
 		<bom.version>7.0.0.fuse-000027-redhat-1</bom.version>
 		<NEXUSREPO>localhost</NEXUSREPO>
-		
+
 	</properties>
 	<dependencyManagement>
 
@@ -34,14 +34,14 @@
 			<dependency>
 				<!-- https://mvnrepository.com/artifact/org.drools/drools-bom -->
 
-					<groupId>org.drools</groupId>
-					<artifactId>drools-bom</artifactId>
-					<version>7.18.0.Final-redhat-00002</version>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-bom</artifactId>
+				<version>7.18.0.Final-redhat-00002</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 
-			
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -159,8 +159,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
-		
+
+
 
 	</dependencies>
 
@@ -185,13 +185,16 @@
 
 		</plugins>
 	</build>
-	 <repositories>
-    <repository>
-      <id>maven-DM</id>
-      <name>maven-DM</name>
-      <url>${env.NEXUSREPO}/repository/maven-DM/</url>
-    </repository>
-  </repositories>
-
-
+	<profiles>
+		<profile>
+			<id>openshift</id>
+			<repositories>
+				<repository>
+					<id>maven-releases</id>
+					<name>maven-releases</name>
+					<url>${env.NEXUSREPO}/repository/maven-releases/</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
 </project>
